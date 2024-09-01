@@ -1,0 +1,35 @@
+install
+	sublime-text
+	vs-code
+	firefox
+
+	fontawesome-fonts
+	rofi-wayland
+	NWG LOOK
+		git clone https://github.com/nwg-piotr/nwg-look.git
+		sudo dnf install go gtk3 xcur2png gsettings
+		make build
+		sudo make install
+
+	Graphite gtk theme
+		git clone https://github.com/lr-tech/rofi-themes-collection.git
+		./install.sh -d ~/.themes/ -t -c dark -s standard -l --tweaks darker rimless normal
+
+HYPRLOCK - OK
+	Definir PFP
+	Definir fonte
+
+
+GTK THEME - OK
+	Graphite
+
+WAYBAR
+	icons: refazer em um sistema limpo
+	definir estilo do background: completo, por grupo, transparent ou solid
+
+SWAYNC - OK
+	dnf copr enable erikreider/SwayNotificationCenter
+	dnf install SwayNotificationCenter
+	TODO - copiar algum layout
+
+WLOGOUT - OK

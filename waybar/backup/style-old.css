@@ -1,0 +1,61 @@
+* {
+    font-family: Iosevka Nerd Font, sans-serif;
+    font-size: 18px;
+}
+
+window#waybar {
+    /* background-color: #000000; */
+    background-color: transparent;
+    color: #FFFFFF;
+    transition-property: background-color;
+    transition-duration: .5s;
+    opacity: 0.90;
+}
+
+#workspaces,
+#clock,
+#pulseaudio,
+#network,
+#tray {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    padding: 0 10px;
+    margin: 2px 4px 5px 5px;
+    /* border: 1px solid rgba(0, 0, 0, 0); */
+    background-clip: padding-box;
+    border-radius: 30;
+}
+
+#workspaces button {
+    color: #FFFFFF;
+    border-radius: 30;
+}
+
+#workspaces button:hover {
+    background-color: #A9A9A9;
+}
+
+#workspaces button.focused {
+    color: #A9A9A9;
+}
+
+#workspaces button.urgent {
+    color: #8B0000;
+}
+
+#clock {
+    color: #FFFFFF
+}
+
+#pulseaudio {
+    color: #FFFFFF
+}
+
+#network {
+    color: #FFFFFF;
+}
+
+#network.disconnected {
+    background-color: #e06c75;
+    color: #1e222a;
+}

@@ -1,0 +1,120 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "output": ["DP-3"],
+    "reload_style_on_change": true,
+    "height": 42,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "keyboard-state",
+        "tray",
+        "pulseaudio",
+        "network",
+        "custom/power"
+    ],
+
+    ///////////
+    //MODULES//
+    ///////////
+
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": " ",
+            "2": " ",
+            "3": "",
+            "4": " ",
+            "5": " ",
+            "urgent": " ",
+            "focused": " ",
+            "default": " "
+        }
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y}  "
+    },
+    "network": {
+        "format-wifi": " ",
+        "format-ethernet": "",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": " ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{essid} {signalStrength}%"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}% {format_source} ",
+        "format-bluetooth": "{icon} {volume}% {format_source} ",
+        "format-bluetooth-muted": "   {volume}% {format_source} ",
+        "format-muted": "  {format_source}",
+        "format-source": " ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
+        },
+        "tooltip-format": "{desc}, {volume}%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-middle": "pavucontrol"
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "rotate": 0,
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pavucontrol -t 4",
+        "on-click-middle": "volumecontrol.sh -i m",
+        "on-scroll-up": "volumecontrol.sh -i i",
+        "on-scroll-down": "volumecontrol.sh -i d",
+        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+        "scroll-step": 5
+    },
+
+    "custom/cliphist": {
+        "format": "{}",
+        "rotate": 0,
+        "exec": "echo ; echo 󰅇 clipboard history",
+        "on-click": "sleep 0.1 && cliphist.sh c",
+        "on-click-right": "sleep 0.1 && cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && cliphist.sh w",
+        "interval" : 86400,
+        "tooltip": true
+    },
+
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "/home/testehyprland/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		}
+    }
+}

@@ -1,0 +1,270 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "output": [
+        "DP-3"
+    ],
+    // "spacing":5,
+    "margin-left": 11,
+    "margin-right": 11,
+    // "margin-top": 7,
+    "margin-bottom": -4,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+    "modules-left": [
+        "hyprland/workspaces",
+        "wlr/taskbar"
+    ],
+    "modules-center": [
+        "clock",
+        "custom/notification"
+    ],
+    "modules-right": [
+        // "tray",
+        "hyprland/language",
+        "bluetooth",
+        "pulseaudio#microphone",
+        "pulseaudio",
+        "network",
+        "battery",
+        "backlight",
+        "custom/power"
+    ],
+    "custom/notification": {
+        "tooltip": false,
+        "format": "",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span> ",
+            "none": "  ",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        // "all-outputs": true,
+        "format-icons": {
+            //"active": "",
+            "active": "",
+            "default": "●"
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "rotate": 0,
+        "format-icons": {
+            "activated": "󰥔",
+            "deactivated": ""
+        }
+    },
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "rotate": 0,
+        "on-click": "/usr/bin/ags -t ActivityCenter",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 3
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}",
+        "rotate": 0,
+        "format-charging": "",
+        "format-plugged": "",
+        "format-alt": "<span weight='bold' color='#c2864a'>{time} <span weight='bold' color='white'>| <span weight='bold' color='#82d457'>{capacity}%</span></span></span>",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        //"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "on-click-right": "pkill waybar && hyprctl dispatch exec waybar"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "rotate": 0,
+        "format": "{icon}",
+        "format-alt": "{icon} {percent}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "on-click-right": "m8mouse -dpi 1 -led 2 -speed 4",
+        "on-click-middle": "m8mouse -dpi 1 -led 7 -speed 4",
+        "scroll-step": 1,
+        "min-length": 2
+    },
+    "network": {
+        "tooltip": true,
+        "format-wifi": "⇅ ",
+        "rotate": 0,
+        // "format-ethernet": "󰈀 ",
+        "format-ethernet": "",
+        "on-click":" nm-connection-editor",
+        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": "! ",
+        "tooltip-format-disconnected": "Disconnected",
+        // "format-alt": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
+        "interval": 2
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-alt": "{icon} {volume}",
+        "rotate": 0,
+        "format-muted": "婢",
+        "on-click-right": "pavucontrol",
+        "on-click-middle": "volumecontrol.sh -o m",
+        "tooltip-format": "{icon} {desc} // {volume}%",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "rotate": 0,
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pavucontrol -t 4",
+        "on-click-middle": "volumecontrol.sh -i m",
+        "on-scroll-up": "volumecontrol.sh -i i",
+        "on-scroll-down": "volumecontrol.sh -i d",
+        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+        "scroll-step": 5
+    },
+    "custom/notifications": {
+        "tooltip": false,
+        "format": "{icon} {}",
+        "rotate": 0,
+        "format-icons": {
+            "email-notification": "<span foreground='white'><sup></sup></span>",
+            "chat-notification": "󱋊<span foreground='white'><sup></sup></span>",
+            "warning-notification": "󱨪<span foreground='yellow'><sup></sup></span>",
+            "error-notification": "󱨪<span foreground='red'><sup></sup></span>",
+            "network-notification": "󱂇<span foreground='white'><sup></sup></span>",
+            "battery-notification": "󰁺<span foreground='white'><sup></sup></span>",
+            "update-notification": "󰚰<span foreground='white'><sup></sup></span>",
+            "music-notification": "󰝚<span foreground='white'><sup></sup></span>",
+            "volume-notification": "󰕿<span foreground='white'><sup></sup></span>",
+            "notification": "<span foreground='white'><sup></sup></span>",
+            "none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which dunstctl",
+        "exec": "notifications.py",
+        "on-click": "sleep 0.1 && dunstctl history-pop",
+        "on-click-middle": "dunstctl history-clear",
+        "on-click-right": "dunstctl close-all",
+        "interval": 1,
+        // "tooltip": true,
+        "escape": true
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout"
+        // "menu": "on-click",
+        // "menu-file": "/home/testehyprland/.config/waybar/power_menu.xml", // Menu file in resources folder
+        // "menu-actions": {
+        // 	"shutdown": "shutdown",
+        // 	"reboot": "reboot",
+        // 	"suspend": "systemctl suspend",
+        // 	"hibernate": "systemctl hibernate"
+        // }
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "rotate": 0,
+        "icon-size": 18,
+        "icon-theme": "Tela-circle-dracula",
+        "spacing": 0,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "kitty"
+        ],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    },
+    "bluetooth": {
+        "format": "",
+        "on-click": "blueman-manager",
+        // "format-connected": " {device_alias}",
+        // "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "hyprland/language": {
+        "format":"{}",
+        "on-click":"hyprctl switchxkblayout royuan-akko-multi-modes-keyboard-b next",
+        // "on-click-right":"hyprctl switchxkblayout royuan-akko-multi-modes-keyboard-b 1",
+        "format-en": "US",
+        "format-pt": "BR"
+    }
+}
